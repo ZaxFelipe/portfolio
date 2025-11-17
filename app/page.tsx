@@ -1,65 +1,123 @@
+'use client'
+import { div, h1, h2, image, p } from "motion/react-client";
 import Image from "next/image";
+import { motion, scale } from "motion/react"
+import { use, useState } from "react";
+import { useRouter } from "next/router";
+import Link from "next/link";
 
 export default function Home() {
-  return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    const [showPreview, setShowPreview] = useState(false);
+    const [pos, setPos] = useState({ x: 0, y: 0 });
+
+    return(
+
+
+        <div>
+            <header className="flex flex-row justify-between items-center px-4 md:px-8 py-4 gap-4">
+                <div className="flex flex-row items-center gap-2">
+                    <motion.div>
+                        {<Image className="mt-2"
+                        src="/assets/code-icon.png"
+                        width={40}
+                        height={20}
+                        alt="logo"
+                    />}
+                    </motion.div>
+                    <h1 className="text-xl md:text-3xl font-bold">Phize.dev</h1>
+                </div>
+                <div>
+                    {
+                    }
+                    <ul className="flex flex-row items-center gap-2 md:gap-4 p-2 md:p-3 text-sm md:text-base">
+                         <Link href="https://github.com/ZaxFelipe">
+                            <motion.button
+                                whileHover={{scale: 1.3}}
+                                onMouseEnter={() => setShowPreview(true)}
+                                onMouseLeave={() => setShowPreview(false)}
+                                onMouseMove={(e) => setPos({ x: e.clientX, y: e.clientY })}
+                            >
+                                Github
+                            </motion.button>
+                        </Link>
+                        <motion.li whileHover={{scale: 1.3}} className="hidden sm:block">Preços</motion.li>
+                        <motion.li whileHover={{scale: 1.3}} className="hidden sm:block">Serviços</motion.li>
+                    </ul>
+                    <link rel="stylesheet" href="" />
+                </div>
+            </header>
+            {showPreview && (
+                <motion.div
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    style={{
+                        position: 'fixed',
+                        left: pos.x - 500,
+                        top: pos.y + 32,
+                        width: 600,
+                        height: 333,
+                        pointerEvents: 'none',
+                        zIndex: 9999,
+                    }}
+                >
+                    <Image
+                        src={'/assets/Screenshot 2025-11-16 183348.png'}
+                        alt="preview"
+                        width={600}
+                        height={333}
+                        className="rounded-md shadow-lg"
+                    />
+                </motion.div>
+            )}
+
+            <main className="min-h-screen flex flex-col md:flex-row items-center justify-around gap-8 px-4 md:px-8 py-12 md:py-0">
+                <div className="flex flex-col items-center md:items-start text-center md:text-left">
+                    <motion.h1 initial={{y: -250, opacity: 0}} animate={{y: 0, opacity: 1}} transition={{duration: 2}} className="text-3xl sm:text-5xl md:text-7xl font-bold leading-tight">Dando vida para seus</motion.h1>
+                    <motion.h2 initial={{x: -400}} animate={{x: 0}} transition={{duration: 1, delay: 1}} className="text-3xl sm:text-5xl md:text-7xl text-green-500 font-bold">Projetos</motion.h2>
+                </div>
+                <motion.div className="flex justify-center">
+                    {<Image
+                        src="/assets/logo-phize-transparent.png"
+                        width={300}
+                        height={300}
+                        alt="logo"
+                        className="w-64 h-64 md:w-96 md:h-96"
+                    />}
+                </motion.div>
+            </main>
+            <section className="w-full px-4 md:px-8 py-8">
+                <div>
+                    <p className="text-center md:text-left text-gray-400 text-sm md:text-lg font-thin">Uma pessoa apaixonada por programação e construir ideias</p>
+                </div>
+            </section>
+                <section id="services" className="w-full py-12 md:py-20 px-4 md:px-8">
+                    <motion.div initial={{opacity: 0}} animate={{opacity: 1}} transition={{duration: 0.8}} className="mb-10">
+                        <h2 className="text-3xl md:text-5xl font-bold mb-3">Serviços</h2>
+                        <div className="w-16 h-1 bg-green-500"></div>
+                        <p className="text-gray-400 text-sm md:text-lg mt-4">Estes são todos os serviços que realizo como Freelancer ou PJ, entre em contato para solicitar seu orçamento.</p>
+                    </motion.div>
+                    
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-12">
+                        {[
+                            { icon: "🤖", title: "Tecnologia moderna e dinamica ", desc: "Desenvolvimento de soluções bonitas e eficientes, com Next.js, Tailwind e Supabase." },
+                            { icon: "📋", title: "Atendimento Personalizado", desc: "Desenvolvimento de soluções personalizadas perfeito para lojas outras instituições." },
+                            { icon: "🎨", title: "Designs para Social Media e UX", desc: "Desenvolvimento de aplicações para Android, com ou sem ajuda de banco de dados." }                        ].map((service, idx) => (
+                            <motion.div
+                                key={idx}
+                                initial={{opacity: 0, y: 20}}
+                                animate={{opacity: 1, y: 0}}
+                                transition={{duration: 0.6, delay: idx * 0.1}}
+                                whileHover={{y: -5, boxShadow: "0 20px 30px rgba(34, 197, 94, 0.2)"}}
+                                className="bg-gray-900 p-8 rounded-lg border border-gray-800 hover:border-green-500 transition-colors cursor-pointer"
+                            >
+                                <div className="text-5xl mb-4">{service.icon}</div>
+                                <h3 className="text-2xl font-bold mb-3 text-white">{service.title}</h3>
+                                <p className="text-gray-400">{service.desc}</p>
+                            </motion.div>
+                        ))}
+                    </div>
+                </section>
+
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
-  );
+    )
 }

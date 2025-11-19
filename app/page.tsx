@@ -16,7 +16,7 @@ export default function Home() {
         <div>
             <header className="flex flex-row justify-between items-center px-4 md:px-8 py-4 gap-4">
                 <div className="flex flex-row items-center gap-2">
-                    <motion.div>
+                    <motion.div whileHover={{scale: 0}}>
                         {<Image className="mt-2"
                         src="/assets/code-icon.png"
                         width={40}
@@ -101,7 +101,7 @@ export default function Home() {
                         {[
                             { icon: "🤖", title: "Tecnologia moderna e dinamica ", desc: "Desenvolvimento de soluções bonitas e eficientes, com Next.js, Tailwind e Supabase." },
                             { icon: "📋", title: "Atendimento Personalizado", desc: "Desenvolvimento de soluções personalizadas perfeito para lojas outras instituições." },
-                            { icon: "🎨", title: "Designs para Social Media e UX", desc: "Desenvolvimento de aplicações para Android, com ou sem ajuda de banco de dados." }                        ].map((service, idx) => (
+                            { icon: "🎨", title: "Designs para Social Media e UX", desc: "Criação de Posts e Designs modernos para atingir seu objetivo." }                        ].map((service, idx) => (
                             <motion.div
                                 key={idx}
                                 initial={{opacity: 0, y: 20}}
@@ -113,6 +113,81 @@ export default function Home() {
                                 <div className="text-5xl mb-4">{service.icon}</div>
                                 <h3 className="text-2xl font-bold mb-3 text-white">{service.title}</h3>
                                 <p className="text-gray-400">{service.desc}</p>
+                            </motion.div>
+                        ))}
+                    </div>
+                </section>
+
+                <section id="projects" className="w-full py-12 md:py-20 px-4 md:px-8">
+                    <motion.div initial={{opacity: 0}} animate={{opacity: 1}} transition={{duration: 0.8}} className="mb-10">
+                        <h2 className="text-3xl md:text-5xl font-bold mb-3">Meus Projetos</h2>
+                        <div className="w-16 h-1 bg-green-500"></div>
+                        <p className="text-gray-400 text-sm md:text-lg mt-4">Alguns dos principais projetos que desenvolvi recentemente.</p>
+                    </motion.div>
+                    
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-12 ">
+                        {[
+                            { 
+                                type: "image",
+                                image: "/assets/playedyet-card.png", 
+                                title: "PlayedYet", 
+                                desc: "Organizador de jogos inspirado em Backloggd e Zerei.gg.",
+                                link: "https://github.com/ZaxFelipe/PlayedYet"
+                            },
+                            { 
+                                type: "video",
+                                video: "/assets/HiClaudio.mp4",
+                                title: "HiClaudio", 
+                                desc: "Seu agente flutuante de AI para perguntas rápidas a qualquer momento, utilizando Electron e GEMINI 2.5 Flash.",
+                                link: "#"
+                            },
+                            { 
+                                type: "image",
+                                image: "/assets/logo-phize-transparent.png", 
+                                title: "Em breve", 
+                                desc: "Alguns projetos ainda não sendo produzidos.",
+                                link: "https://github.com/ZaxFelipe/PlayedYet"
+                            },
+                        ].map((project, idx) => (
+                            <motion.div
+                                key={idx}
+                                initial={{opacity: 0, y: 20}}
+                                animate={{opacity: 1, y: 0}}
+                                transition={{duration: 0.6, delay: idx * 0.1}}
+                                whileHover={{y: -5, boxShadow: "0 20px 30px rgba(34, 197, 94, 0.2)"}}
+                                className="bg-gray-900 rounded-lg border border-gray-800 hover:border-green-500 transition-colors overflow-hidden"
+                            >
+                                <div className="relative h-48 w-full">
+                                    {project.type === "video" ? (
+                                        <video
+                                            src={project.video}
+                                            autoPlay
+                                            loop
+                                            muted
+                                            playsInline
+                                            className="object-cover w-full h-full"
+                                            style={{ filter: 'none' }}
+                                        />
+                                    ) : (
+                                        <Image
+                                            src={project.image!}
+                                            alt={project.title}
+                                            fill
+                                            className="object-cover"
+                                        />
+                                    )}
+                                </div>
+                                <div className="p-6">
+                                    <h3 className="text-xl font-bold mb-3 text-white">{project.title}</h3>
+                                    <p className="text-gray-400 mb-4 text-sm">{project.desc}</p>
+                                    <motion.button
+                                        whileHover={{scale: 1.05}}
+                                        whileTap={{scale: 0.95}}
+                                        className="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-md transition-colors text-sm font-medium"
+                                    >
+                                        Ver Projeto
+                                    </motion.button>
+                                </div>
                             </motion.div>
                         ))}
                     </div>

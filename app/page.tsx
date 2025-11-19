@@ -145,7 +145,7 @@ export default function Home() {
                                 type: "image",
                                 image: "/assets/logo-phize-transparent.png", 
                                 title: "Em breve", 
-                                desc: "Alguns projetos ainda não sendo produzidos.",
+                                desc: "Alguns projetos ainda estão sendo produzidos.",
                                 link: "https://github.com/ZaxFelipe/PlayedYet"
                             },
                         ].map((project, idx) => (

@@ -5,6 +5,7 @@ import { motion, scale } from "motion/react"
 import { use, useState } from "react";
 import { useRouter } from "next/router";
 import Link from "next/link";
+import Spline from "@splinetool/react-spline";
 
 export default function Home() {
     const [showPreview, setShowPreview] = useState(false);

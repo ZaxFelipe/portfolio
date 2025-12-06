@@ -72,8 +72,8 @@ export default function Home() {
 
             <main className="min-h-screen flex flex-col md:flex-row items-center justify-around gap-8 px-4 md:px-8 py-12 md:py-0">
                 <div className="flex flex-col items-center md:items-start text-center md:text-left">
-                    <motion.h1 initial={{y: -250, opacity: 0}} animate={{y: 0, opacity: 1}} transition={{duration: 2}} className="text-3xl sm:text-5xl md:text-7xl font-bold leading-tight">Dando vida para seus</motion.h1>
-                    <motion.h2 initial={{x: -400}} animate={{x: 0}} whileHover={{rotate: 20}} transition={{duration: 1, delay: 1}} className="text-3xl sm:text-5xl md:text-7xl text-green-500 font-bold">Projetos</motion.h2>
+                    <motion.h1 initial={{y: -250, opacity: 0}} animate={{y: 0, opacity: 1}} transition={{duration: 1}} className="text-3xl sm:text-5xl md:text-7xl font-bold leading-tight">Dando vida para seus</motion.h1>
+                    <motion.h2 initial={{x: -400}} animate={{x: 0}} whileHover={{rotate: 20}} transition={{duration: 0.5, delay: 1}} className="text-3xl sm:text-5xl md:text-7xl text-green-500 font-bold">Projetos</motion.h2>
                 </div>
                 <motion.div className="flex justify-center">
                     {<Image
